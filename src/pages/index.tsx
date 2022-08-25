@@ -25,7 +25,7 @@ const LandingPage: NextPage = () => {
           <button
             onClick={() => {
               console.log("clicked");
-              signIn();
+              signIn("google", { callbackUrl: "/home" });
             }}
           >
             <h1>GET STARTED</h1>
