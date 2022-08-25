@@ -1,5 +1,6 @@
 import { signOut, useSession } from "next-auth/react";
 import Image from "next/image";
+import Link from "next/link";
 
 const Navbar = () => {
   const { data: session } = useSession();
@@ -7,7 +8,9 @@ const Navbar = () => {
   return (
     <div>
       <div>
-        <h1 className="text-6xl font-extrabold">FYLM List</h1>
+        <Link href="/home">
+          <h1 className="text-6xl font-extrabold">FYLM List</h1>
+        </Link>
       </div>
       {session && (
         <>
