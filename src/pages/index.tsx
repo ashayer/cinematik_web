@@ -1,7 +1,8 @@
 import type { NextPage } from "next";
-import { trpc } from "../utils/trpc";
+import { useSession, signIn, signOut } from "next-auth/react";
 
 const LandingPage: NextPage = () => {
+  const { data: session } = useSession();
 
   return (
     <div>
@@ -20,9 +21,29 @@ const LandingPage: NextPage = () => {
         <h1>Find new films</h1>
       </div>
       <div>
-        <button>
-          <h1>GET STARTED</h1>
-        </button>
+        {!session && (
+          <button
+            onClick={() => {
+              console.log("clicked");
+              signIn();
+            }}
+          >
+            <h1>GET STARTED</h1>
+          </button>
+        )}
+        {session && (
+          <>
+            <h1>{session.user?.name}</h1>
+            <button
+              onClick={() => {
+                console.log("clicked");
+                signOut();
+              }}
+            >
+              <h1>Sign Out</h1>
+            </button>
+          </>
+        )}
       </div>
     </div>
   );
