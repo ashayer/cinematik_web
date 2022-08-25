@@ -28,5 +28,16 @@ export const movieRouter = createRouter()
 
       return credits;
     },
+  })
+  .mutation("liked-movie-by-id", {
+    input: z.object({ userId: z.string(), movieId: z.string() }),
+    async resolve({ input }) {
+      return await prisma?.likedMovies.create({
+        data: {
+          movieId: input.movieId,
+          userId: input.userId,
+        },
+      });
+    },
   });
 
