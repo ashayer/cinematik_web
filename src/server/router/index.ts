@@ -4,7 +4,7 @@ import superjson from "superjson";
 
 import { movieRouter } from "./movieRouter";
 
-export const appRouter = createRouter().transformer(superjson).merge("example.", movieRouter);
+export const appRouter = createRouter().transformer(superjson).merge("movie.", movieRouter);
 
 // export type definition of API
 export type AppRouter = typeof appRouter;

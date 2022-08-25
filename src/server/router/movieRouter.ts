@@ -19,5 +19,14 @@ export const movieRouter = createRouter()
 
       return popular;
     },
+  })
+  .query("get-cast-list", {
+    input: z.object({ id: z.string() }),
+    async resolve({ input }) {
+      const movieDB = new MovieDb(process.env.MOVIE_DB_API_KEY as string);
+      const credits = await movieDB.movieCredits(input.id);
+
+      return credits;
+    },
   });
 

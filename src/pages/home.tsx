@@ -2,7 +2,7 @@ import type { NextPage } from "next";
 import { trpc } from "../utils/trpc";
 import MovieGrid from "../components/MovieGrid";
 const LandingPage: NextPage = () => {
-  const movies = trpc.useQuery(["example.get-popular-movies"]);
+  const movies = trpc.useQuery(["movie.get-popular-movies"]);
 
   if (movies.isLoading) return null;
 
