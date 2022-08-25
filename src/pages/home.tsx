@@ -8,7 +8,7 @@ const LandingPage: NextPage = () => {
 
   return (
     <div>
-      <h1 className="text-6xl font-extrabold">Popular Movies</h1>
+      <h1>Trending Now</h1>
       {movies.data && <MovieGrid data={movies.data} />}
     </div>
   );

@@ -1,4 +1,4 @@
-import { useSession } from "next-auth/react";
+import { signOut, useSession } from "next-auth/react";
 import Image from "next/image";
 
 const Navbar = () => {
@@ -7,12 +7,19 @@ const Navbar = () => {
   return (
     <div>
       <div>
-        <h1 className="text-5xl font-extrabold">FYLM LIST</h1>
+        <h1 className="text-6xl font-extrabold">FYLM List</h1>
       </div>
       {session && (
         <>
-          <Image src={session.user?.image} alt="User picture" height={50} width={50} />
+          <Image src={session.user?.image ?? ""} alt="User picture" height={50} width={50} />
           <h1>{session.user?.name}</h1>
+          <button
+            onClick={() => {
+              signOut();
+            }}
+          >
+            Sign Out
+          </button>
         </>
       )}
     </div>

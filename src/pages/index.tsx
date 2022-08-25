@@ -34,14 +34,6 @@ const LandingPage: NextPage = () => {
         {session && (
           <>
             <h1>{session.user?.name}</h1>
-            <button
-              onClick={() => {
-                console.log("clicked");
-                signOut();
-              }}
-            >
-              <h1>Sign Out</h1>
-            </button>
           </>
         )}
       </div>
