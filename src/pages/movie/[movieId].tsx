@@ -1,7 +1,7 @@
 import type { NextPage } from "next";
 import { trpc } from "../../utils/trpc";
 import { useRouter } from "next/router";
-import { useSession } from "next-auth/react";
+import { useSession, getSession } from "next-auth/react";
 
 const MovieDetails: NextPage = () => {
   const { data: session } = useSession();
@@ -10,9 +10,6 @@ const MovieDetails: NextPage = () => {
   const { movieId } = router.query;
 
   const movieDetails = trpc.useQuery(["movie.get-movie-details", { id: movieId as string }]);
-
-  if (!session) {
-  }
 
   if (movieDetails.isLoading) return <div>Loading..</div>;
 
