@@ -1,5 +1,6 @@
 import { MovieResponse } from "moviedb-promise";
 import Image from "next/image";
+import LikeMovieButton from "./LikeMovieButton";
 
 const MovieDetailsOverview: React.FC<{ movie: MovieResponse }> = ({ movie }) => {
   return (
@@ -18,6 +19,7 @@ const MovieDetailsOverview: React.FC<{ movie: MovieResponse }> = ({ movie }) => 
         <div>
           <h1 className="text-xl text-white">{movie.release_date}</h1>
         </div>
+        <LikeMovieButton />
       </div>
       <div className="col-span-6 lg:col-span-4 2xl:col-span-5 gap-8 p-6">
         <div className="text-center">

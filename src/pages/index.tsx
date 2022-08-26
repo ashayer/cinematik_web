@@ -1,8 +1,16 @@
 import type { NextPage } from "next";
-import { useSession, signIn, signOut } from "next-auth/react";
+import { useSession, signIn } from "next-auth/react";
+import { useRouter } from "next/router";
 
 const LandingPage: NextPage = () => {
   const { data: session } = useSession();
+  const router = useRouter();
+
+  if (session?.user) {
+    router.push({
+      pathname: "/home",
+    });
+  }
 
   return (
     <div>

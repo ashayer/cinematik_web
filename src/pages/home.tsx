@@ -3,17 +3,26 @@ import { trpc } from "../utils/trpc";
 import MovieGrid from "../components/MovieGrid";
 import testData from "../utils/tempMovieData";
 import MovieCarousel from "../components/MovieCarousel";
-const LandingPage: NextPage = () => {
-  //const movies = trpc.useQuery(["movie.get-popular-movies"]);
+import { useSession, signIn } from "next-auth/react";
+import router from "next/router";
 
-  //if (movies.isLoading) return null;
+const LandingPage: NextPage = () => {
+  const { data: session } = useSession();
+  const movies = trpc.useQuery(["movie.get-popular-movies"]);
+
+  if (movies.isLoading) return null;
+
+  if (!session?.user) {
+    router.push({
+      pathname: "/",
+    });
+  }
 
   return (
     <div className="text-center">
       <h1 className="font-bold text-6xl pb-5 text-white">Trending Now</h1>
-      {/* {movies.data && <MovieGrid data={movies.data} />} */}
-      {<MovieCarousel data={testData.slice(0, 10)} />}
-      {<MovieGrid data={testData} />}
+      {movies.data && <MovieCarousel data={movies.data.slice(0, 10)} />}
+      {movies.data && <MovieGrid data={movies.data} />}
     </div>
   );
 };

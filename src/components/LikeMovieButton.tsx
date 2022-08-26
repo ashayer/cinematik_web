@@ -20,7 +20,7 @@ const LikeMovieButton = () => {
   if (userMovieLikes.isLoading) return null;
   return (
     <>
-      {userMovieLikes.data !== null || movieIsLiked ? (
+      {movieIsLiked || userMovieLikes.data !== null ? (
         <button
           className="btn btn-circle"
           onClick={() => {
