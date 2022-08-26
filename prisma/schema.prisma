@@ -47,7 +47,7 @@ model User {
   image         String?
   accounts      Account[]
   sessions      Session[]
-  LikedMovies   LikedMovies[]
+  LikedMovie    LikedMovies[]
 }
 
 model VerificationToken {
@@ -59,8 +59,11 @@ model VerificationToken {
 }
 
 model LikedMovies {
-  id      Int    @id @default(autoincrement())
-  movieId String
-  userId  String
-  user    User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  id       String @default(cuid())
+  userId   String
+  movieId  String
+  randomId String
+  user     User?  @relation(fields: [userId], references: [id])
+
+  @@id([userId, movieId, randomId])
 }

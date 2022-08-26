@@ -2,6 +2,7 @@ import type { NextPage } from "next";
 import { trpc } from "../../utils/trpc";
 import { useRouter } from "next/router";
 import { useSession, getSession } from "next-auth/react";
+import LikeMovieButton from "../../components/LikeMovieButton";
 
 const MovieDetails: NextPage = () => {
   const { data: session } = useSession();
@@ -17,8 +18,12 @@ const MovieDetails: NextPage = () => {
 
   return (
     <div>
-      <button></button>
-      {movieDetails.isSuccess && <div>{JSON.stringify(movieDetails)}</div>}
+      {movieDetails.isSuccess && (
+        <>
+          <LikeMovieButton />
+          <div>{JSON.stringify(movieDetails)}</div>
+        </>
+      )}
     </div>
   );
 };

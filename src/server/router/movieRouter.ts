@@ -29,13 +29,43 @@ export const movieRouter = createRouter()
       return credits;
     },
   })
-  .mutation("liked-movie-by-id", {
+  .mutation("like-movie-by-id", {
     input: z.object({ userId: z.string(), movieId: z.string() }),
     async resolve({ input }) {
       return await prisma?.likedMovies.create({
         data: {
-          movieId: input.movieId,
+          randomId: input.userId + input.movieId,
           userId: input.userId,
+          movieId: input.movieId,
+        },
+      });
+    },
+  })
+  .mutation("disliked-movie", {
+    input: z.object({ userId: z.string(), movieId: z.string() }),
+    async resolve({ input }) {
+      return await prisma?.likedMovies.delete({
+        where: {
+          userId_movieId_randomId: {
+            userId: input.userId,
+            movieId: input.movieId,
+            randomId: input.userId + input.movieId,
+          },
+        },
+      });
+    },
+  })
+  .query("get-user-liked-movies", {
+    input: z.object({ userId: z.string() }),
+    async resolve({ input }) {
+      return await prisma?.likedMovies.findMany({
+        where: {
+          userId: {
+            equals: input.userId,
+          },
+        },
+        select: {
+          movieId: true,
         },
       });
     },
