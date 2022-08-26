@@ -14,7 +14,7 @@ const Navbar = () => {
             <a className="btn btn-ghost normal-case text-xl">FYLM LIST</a>
           </Link>
         </div>
-        <div className="flex-none gap-2">
+        <div className="flex-none gap-1">
           <div className="form-control">
             <input type="text" placeholder="Search" className="input input-bordered" />
           </div>
@@ -39,7 +39,7 @@ const Navbar = () => {
                 <a className="justify-between">Profile</a>
               </li>
               <li>
-                <a onClick={() => signOut()}>Logout</a>
+                <a onClick={() => signOut({ callbackUrl: "/" })}>Logout</a>
               </li>
             </ul>
           </div>
