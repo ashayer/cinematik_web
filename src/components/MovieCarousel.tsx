@@ -23,7 +23,7 @@ const MovieCarousel: React.FC<{ data: MovieResult[] }> = ({ data }) => {
                   position: "absolute",
                   height: "100%",
                   width: "100%",
-                  background: "linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0.5), rgba(0,0,0,1))",
+                  background: "linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0.25), rgba(0,0,0,0.75))",
                 }}
               >
                 <div
