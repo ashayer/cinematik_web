@@ -33,7 +33,6 @@ export const movieRouter = createRouter()
     async resolve({ input }) {
       return await prisma?.likedMovies.create({
         data: {
-          randomId: input.userId + input.movieId,
           userId: input.userId,
           movieId: input.movieId,
         },
@@ -45,10 +44,9 @@ export const movieRouter = createRouter()
     async resolve({ input }) {
       return await prisma?.likedMovies.delete({
         where: {
-          userId_movieId_randomId: {
+          userId_movieId: {
             userId: input.userId,
             movieId: input.movieId,
-            randomId: input.userId + input.movieId,
           },
         },
       });
