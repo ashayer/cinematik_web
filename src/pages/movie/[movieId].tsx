@@ -1,9 +1,9 @@
 import type { NextPage } from "next";
 import { trpc } from "../../utils/trpc";
 import router, { useRouter } from "next/router";
-import { useSession, getSession } from "next-auth/react";
-import { tempMovieDetail } from "../../utils/tempMovieDetails";
+import { useSession } from "next-auth/react";
 import MovieDetailsOverview from "../../components/MoveDetails";
+// import { tempMovieDetail } from "../../utils/tempMovieDetails";
 
 const MovieDetails: NextPage = () => {
   const { data: session } = useSession();
