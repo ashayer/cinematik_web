@@ -1,11 +1,9 @@
 import { signOut, useSession } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
 
 const Navbar = () => {
   const { data: session } = useSession();
-  const [isHidden, setIsHidden] = useState(true);
   return (
     <nav className=" px-2 sm:px-4 py-2.5  dark:bg-gray-900">
       <div className="navbar bg-gray-900">
@@ -36,7 +34,9 @@ const Navbar = () => {
               className="mt-3 p-2 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-52"
             >
               <li>
-                <a className="justify-between">Profile</a>
+                <Link href={`user/1`}>
+                  <a>Profile</a>
+                </Link>
               </li>
               <li>
                 <a onClick={() => signOut({ callbackUrl: "/" })}>Logout</a>
