@@ -2,10 +2,11 @@ import { trpc } from "../utils/trpc";
 import { useRouter } from "next/router";
 import { useSession } from "next-auth/react";
 import { useState } from "react";
+import { useQueryClient } from "react-query";
 
 const LikeMovieButton = () => {
   const { data: session } = useSession();
-
+  const queryClient = useQueryClient();
   const router = useRouter();
   const { movieId } = router.query;
 
@@ -19,19 +20,25 @@ const LikeMovieButton = () => {
     { onSuccess: setLocalIsLiked },
   );
 
-  const likeMovieMutation = trpc.useMutation(["movie.like-movie-by-id"]);
-  const dislikeMutation = trpc.useMutation(["movie.disliked-movie"]);
+  const likeMovieMutation = trpc.useMutation(["movie.like-movie-by-id"], {
+    onMutate: () => {
+      setLocalIsLiked(true);
+    },
+  });
+  const dislikeMutation = trpc.useMutation(["movie.disliked-movie"], {
+    onMutate: () => {
+      setLocalIsLiked(false);
+    },
+  });
 
-  console.log(movieIsLiked);
   return (
     <>
-      {movieIsLiked.data && localIsLiked ? (
+      {localIsLiked ? (
         <>
-          {!movieIsLiked.isRefetching && (
+          {
             <button
               className="btn btn-circle"
               onClick={() => {
-                console.log("disliking movie");
                 setLocalIsLiked(false);
                 dislikeMutation.mutate({
                   userId: session?.user?.id as string,
@@ -54,13 +61,12 @@ const LikeMovieButton = () => {
                 />
               </svg>
             </button>
-          )}
+          }
         </>
       ) : (
         <button
           className="btn btn-circle"
           onClick={() => {
-            console.log("liking movie");
             setLocalIsLiked(true);
 
             likeMovieMutation.mutate({

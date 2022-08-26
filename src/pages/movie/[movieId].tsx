@@ -2,7 +2,7 @@ import type { NextPage } from "next";
 import { trpc } from "../../utils/trpc";
 import router, { useRouter } from "next/router";
 import { useSession } from "next-auth/react";
-import MovieDetailsOverview from "../../components/MoveDetails";
+import MovieDetailsOverview from "../../components/MovieDetails";
 // import { tempMovieDetail } from "../../utils/tempMovieDetails";
 
 const MovieDetails: NextPage = () => {
