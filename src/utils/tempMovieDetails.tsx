@@ -1,4 +1,4 @@
-export const tempMovieDetail: any = {
+export const tempMovieDetail = {
   adult: false,
   backdrop_path: "/nmGWzTLMXy9x7mKd8NKPLmHtWGa.jpg",
   belongs_to_collection: {

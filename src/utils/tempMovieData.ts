@@ -1,4 +1,4 @@
-const testData: any = [
+const testData = [
   {
     adult: false,
     backdrop_path: "/qTkJ6kbTeSjqfHCFCmWnfWZJOtm.jpg",
