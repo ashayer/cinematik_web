@@ -21,21 +21,19 @@ const LandingPage: NextPage = () => {
         <h1>Find new films</h1>
       </div>
       <div>
-        {!session && (
-          <button
-            onClick={() => {
-              console.log("clicked");
-              signIn("google", { callbackUrl: "/home" });
-            }}
-          >
-            <h1>GET STARTED</h1>
-          </button>
-        )}
-        {session && (
-          <>
-            <h1>{session.user?.name}</h1>
-          </>
-        )}
+        <div>
+          {!session && (
+            <button
+              onClick={() => {
+                console.log("clicked");
+                signIn("google", { callbackUrl: "/home" });
+              }}
+            >
+              <h1>GET STARTED</h1>
+            </button>
+          )}
+        </div>
+        <div>{session && <h1>{session.user?.name}</h1>}</div>
       </div>
     </div>
   );
