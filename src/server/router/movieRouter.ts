@@ -15,9 +15,8 @@ export const movieRouter = createRouter()
     input: z.object({ id: z.string() }),
     async resolve({ input }) {
       const movieDB = new MovieDb(process.env.MOVIE_DB_API_KEY as string);
-      const popular = await movieDB.movieInfo(input.id);
-
-      return popular;
+      const movieDetails = await movieDB.movieInfo(input.id);
+      return movieDetails;
     },
   })
   .query("get-cast-list", {
