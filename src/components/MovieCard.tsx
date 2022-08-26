@@ -1,8 +1,8 @@
-import { MovieResult } from "moviedb-promise";
+import { MovieResult, MovieResponse } from "moviedb-promise";
 import Image from "next/image";
 import Link from "next/link";
 
-const MovieCard: React.FC<{ data: MovieResult }> = ({ data }) => {
+const MovieCard: React.FC<{ data: MovieResult | MovieResponse }> = ({ data }) => {
   return (
     <Link href={`/movie/${data.id}`}>
       <div
