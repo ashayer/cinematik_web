@@ -21,6 +21,8 @@ const YourLikedMovies = () => {
     });
   }
 
+  console.log(movieLikes.data);
+
   return (
     <div>
       {movieLikes.data && movieLikes.isSuccess && (

@@ -13,6 +13,8 @@ const UserPage: NextPage = () => {
   const nrouter = useRouter();
   const { name } = nrouter.query;
 
+  console.log(name);
+
   return (
     <div className="text-center">
       {name === session?.user?.name ? <YourLikedMovies /> : <OtherUserLikedMovies />}
