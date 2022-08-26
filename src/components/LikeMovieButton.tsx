@@ -3,34 +3,24 @@ import { useRouter } from "next/router";
 import { useSession, getSession } from "next-auth/react";
 import { useState } from "react";
 
-type movieLikedData = {
-  movieId: string;
-};
-
-const checkIfMovieIsLiked = (movieLikes: movieLikedData[], currentMovieId: string) => {
-  const hasId = (element: movieLikedData) => element.movieId === currentMovieId;
-  console.log(movieLikes.some(hasId));
-  return movieLikes.some(hasId);
-};
-
 const LikeMovieButton = () => {
   const { data: session } = useSession();
 
   const router = useRouter();
   const { movieId } = router.query;
   const [movieIsLiked, setMovieIsLiked] = useState(false);
-  const userMovieLikes = trpc.useQuery(
-    ["movie.get-user-liked-movies", { userId: session?.user?.id as string }],
-    { keepPreviousData: true },
-  );
+  const userMovieLikes = trpc.useQuery([
+    "movie.check-if-movie-liked",
+    { userId: session?.user?.id as string, movieId: movieId as string },
+  ]);
 
   const likeMovieMutation = trpc.useMutation(["movie.like-movie-by-id"]);
   const dislikeMutation = trpc.useMutation(["movie.disliked-movie"]);
-  if (userMovieLikes.isLoading) return null;
 
+  if (userMovieLikes.isLoading) return null;
   return (
     <>
-      {checkIfMovieIsLiked(userMovieLikes.data!, movieId as string) ? (
+      {userMovieLikes.data !== null || movieIsLiked ? (
         <button
           className="btn btn-circle"
           onClick={() => {
@@ -39,6 +29,7 @@ const LikeMovieButton = () => {
               userId: session?.user?.id as string,
               movieId: movieId as string,
             });
+            setMovieIsLiked(false);
           }}
         >
           <svg
@@ -65,6 +56,7 @@ const LikeMovieButton = () => {
               userId: session?.user?.id as string,
               movieId: movieId as string,
             });
+            setMovieIsLiked(true);
           }}
         >
           <svg
