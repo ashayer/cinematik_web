@@ -1,10 +1,10 @@
 import type { NextPage } from "next";
 import { trpc } from "../utils/trpc";
 import MovieGrid from "../components/MovieGrid";
-import testData from "../utils/tempMovieData";
 import MovieCarousel from "../components/MovieCarousel";
-import { useSession, signIn } from "next-auth/react";
+import { useSession } from "next-auth/react";
 import router from "next/router";
+// import testData from "../utils/tempMovieData";
 
 const LandingPage: NextPage = () => {
   const { data: session } = useSession();
