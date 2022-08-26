@@ -7,7 +7,11 @@ const MovieCarousel: React.FC<{ data: MovieResult[] }> = ({ data }) => {
   const [emblaRef] = useEmblaCarousel();
 
   return (
-    <div className="embla" ref={emblaRef} style={{ overflow: "hidden" }}>
+    <div
+      className="embla cursor-grab active:cursor-grabbing"
+      ref={emblaRef}
+      style={{ overflow: "hidden" }}
+    >
       <div className="embla__container" style={{ display: "flex" }}>
         {data.map((movieResult, index) => (
           <div key={movieResult.id} className="embla__slide" style={{ flex: "0 0 100%" }}>
