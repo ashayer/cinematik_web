@@ -1,7 +1,7 @@
-import { MovieResult } from "moviedb-promise";
+import { MovieResult, MovieResponse } from "moviedb-promise";
 import MovieCard from "./MovieCard";
 
-const MovieGrid: React.FC<{ data: MovieResult[] }> = ({ data }) => {
+const MovieGrid: React.FC<{ data: MovieResult[] | MovieResponse[] }> = ({ data }) => {
   return (
     <div
       className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-5 

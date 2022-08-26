@@ -13,7 +13,7 @@ const MovieCarousel: React.FC<{ data: MovieResult[] }> = ({ data }) => {
       style={{ overflow: "hidden" }}
     >
       <div className="embla__container" style={{ display: "flex" }}>
-        {data.map((movieResult, index) => (
+        {data.map((movieResult) => (
           <div key={movieResult.id} className="embla__slide" style={{ flex: "0 0 100%" }}>
             <div className="flex items-center justify-center">
               <div
