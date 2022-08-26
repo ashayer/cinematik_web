@@ -1,9 +1,18 @@
 import { signOut, useSession } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
+import { useForm, SubmitHandler } from "react-hook-form";
+import router from "next/router";
 
+type Inputs = {
+  searchText: string;
+};
 const Navbar = () => {
   const { data: session } = useSession();
+  const { register, handleSubmit } = useForm<Inputs>();
+  const onSubmit: SubmitHandler<Inputs> = (data) =>
+    data.searchText.trim() !== "" ? router.push(`/search/${data.searchText.trim()}`) : null;
+
   return (
     <>
       {session?.user && (
@@ -15,9 +24,14 @@ const Navbar = () => {
               </Link>
             </div>
             <div className="flex-none gap-1">
-              <div className="form-control">
-                <input type="text" placeholder="Search" className="input input-bordered" />
-              </div>
+              <form onSubmit={handleSubmit(onSubmit)}>
+                <input
+                  defaultValue=""
+                  {...register("searchText")}
+                  className="input w-full max-w-xs"
+                />
+              </form>
+
               <div className="dropdown dropdown-end">
                 <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
                   <div className="w-10 rounded-full">

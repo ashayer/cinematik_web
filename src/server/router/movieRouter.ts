@@ -91,5 +91,17 @@ export const movieRouter = createRouter()
       if (isLiked) return true;
       return false;
     },
+  })
+  .query("search-movie", {
+    input: z.object({ searchText: z.string() }),
+    async resolve({ input }) {
+      const movieDB = new MovieDb(process.env.MOVIE_DB_API_KEY as string);
+      const parameters = {
+        query: input.searchText,
+        page: 1,
+      };
+      const movieSearchResults = await movieDB.searchMovie(parameters);
+      return movieSearchResults;
+    },
   });
 
