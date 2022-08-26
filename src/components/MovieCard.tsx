@@ -7,7 +7,7 @@ const MovieCard: React.FC<{ data: MovieResult }> = ({ data }) => {
     <Link href={`/movie/${data.id}`}>
       <div
         className="flex flex-col content-center justify-start border-2 
-     w-48justify-self-center hover:scale-95 cursor-pointer ease-in-ou duration-100"
+     w-48justify-self-center hover:scale-95 cursor-pointer ease-in-ou duration-100 rounded-lg overflow-hidden"
       >
         <Image
           src={`https://image.tmdb.org/t/p/w200${data.poster_path}`}
@@ -16,7 +16,6 @@ const MovieCard: React.FC<{ data: MovieResult }> = ({ data }) => {
           height={300}
         />
         <h1 className="font-bold">{data.title}</h1>
-        <h1>{data.vote_average}</h1>
         <h1>{data.release_date}</h1>
       </div>
     </Link>
