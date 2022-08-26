@@ -2,6 +2,10 @@ import { createRouter } from "./context";
 import { z } from "zod";
 import { MovieDb } from "moviedb-promise";
 
+import { PrismaClient } from "@prisma/client";
+
+const prisma = new PrismaClient();
+
 export const movieRouter = createRouter()
   .query("get-popular-movies", {
     async resolve() {
