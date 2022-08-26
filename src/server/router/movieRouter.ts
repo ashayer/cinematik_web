@@ -54,10 +54,10 @@ export const movieRouter = createRouter()
       });
     },
   })
-  .query("get-user-liked-movies", {
+  .query("get-user-liked-movies-by-id", {
     input: z.object({ userId: z.string() }),
     async resolve({ input }) {
-      return await prisma?.likedMovies.findMany({
+      const movieIdArray = await prisma?.likedMovies.findMany({
         where: {
           userId: {
             equals: input.userId,
@@ -67,16 +67,31 @@ export const movieRouter = createRouter()
           movieId: true,
         },
       });
+      const movieDB = new MovieDb(process.env.MOVIE_DB_API_KEY as string);
+      if (movieIdArray && movieIdArray?.length > 0) {
+        const movieDetailsArray = Promise.all(
+          movieIdArray.map(async (movieId) => await movieDB.movieInfo(movieId.movieId)),
+        );
+        return movieDetailsArray;
+      } else {
+        return null;
+      }
     },
   })
   .query("check-if-movie-liked", {
     input: z.object({ userId: z.string(), movieId: z.string() }),
     async resolve({ input }) {
-      return await prisma?.likedMovies.findFirst({
+      const isLiked = await prisma?.likedMovies.findFirst({
         where: {
           AND: [{ userId: input.userId }, { movieId: input.movieId }],
         },
+        select: {
+          movieId: true,
+        },
       });
+
+      if (isLiked) return true;
+      return false;
     },
   });
 
