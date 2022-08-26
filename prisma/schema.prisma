@@ -47,7 +47,6 @@ model User {
   image         String?
   accounts      Account[]
   sessions      Session[]
-  LikedMovie    LikedMovies[]
 }
 
 model VerificationToken {
@@ -62,8 +61,6 @@ model LikedMovies {
   id       String @default(cuid())
   userId   String
   movieId  String
-  randomId String
-  user     User?  @relation(fields: [userId], references: [id])
 
-  @@id([userId, movieId, randomId])
+  @@id([userId, movieId])
 }
