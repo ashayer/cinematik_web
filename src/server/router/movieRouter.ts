@@ -69,5 +69,15 @@ export const movieRouter = createRouter()
         },
       });
     },
+  })
+  .query("check-if-movie-liked", {
+    input: z.object({ userId: z.string(), movieId: z.string() }),
+    async resolve({ input }) {
+      return await prisma?.likedMovies.findFirst({
+        where: {
+          AND: [{ userId: input.userId }, { movieId: input.movieId }],
+        },
+      });
+    },
   });
 
