@@ -20,7 +20,7 @@ const LandingPage: NextPage = () => {
             <div>
               <h1 className="text-8xl font-bold">FYLM LIST</h1>
             </div>
-            <div className="">
+            <div>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"
