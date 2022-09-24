@@ -1,6 +1,7 @@
 import type { NextPage } from "next";
 import { useSession, signIn } from "next-auth/react";
 import { useRouter } from "next/router";
+import Footer from "../components/Footer";
 
 const LandingPage: NextPage = () => {
   const { data: session } = useSession();
@@ -83,6 +84,7 @@ const LandingPage: NextPage = () => {
           </div>
         </div>
       </div>
+      <Footer />
     </div>
   );
 };
