@@ -3,6 +3,7 @@ import { trpc } from "../../utils/trpc";
 import router, { useRouter } from "next/router";
 import { useSession } from "next-auth/react";
 import MovieDetailsOverview from "../../components/MovieDetails";
+import Head from "next/head";
 // import { tempMovieDetail } from "../../utils/tempMovieDetails";
 
 const MovieDetails: NextPage = () => {
@@ -27,6 +28,9 @@ const MovieDetails: NextPage = () => {
       <>
         {movieDetails.data && (
           <>
+            <Head>
+              <title>{movieDetails.data.title}</title>
+            </Head>
             <MovieDetailsOverview movie={movieDetails.data} />
           </>
         )}

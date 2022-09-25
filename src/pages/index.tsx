@@ -1,5 +1,6 @@
 import type { NextPage } from "next";
 import { useSession, signIn } from "next-auth/react";
+import Head from "next/head";
 import { useRouter } from "next/router";
 import Footer from "../components/Footer";
 
@@ -15,6 +16,9 @@ const LandingPage: NextPage = () => {
 
   return (
     <div>
+      <Head>
+        <title>Welcome</title>
+      </Head>
       <div className="hero min-h-screen bg-base-200">
         <div className="text-center flex flex-col">
           <div className="max-w-2xl">

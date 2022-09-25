@@ -6,6 +6,7 @@ import { useEffect } from "react";
 import MovieGrid from "../../components/MovieGrid";
 import YourLikedMovies from "../../components/YourLikedMovies";
 import OtherUserLikedMovies from "../../components/OtherUserLikedMovies";
+import Head from "next/head";
 // import { tempMovieDetail } from "../../utils/tempMovieDetails";
 
 const UserPage: NextPage = () => {
@@ -17,6 +18,9 @@ const UserPage: NextPage = () => {
 
   return (
     <div className="text-center">
+      <Head>
+        <title>{`${session?.user?.name} Profile`}</title>
+      </Head>
       {name === session?.user?.name ? <YourLikedMovies /> : <OtherUserLikedMovies />}
     </div>
   );

@@ -1,4 +1,5 @@
 import { useSession } from "next-auth/react";
+import Head from "next/head";
 import router, { useRouter } from "next/router";
 import MovieSearchResults from "../../components/MovieSearchResults";
 import { trpc } from "../../utils/trpc";
@@ -22,6 +23,9 @@ const Text = () => {
 
   return (
     <div>
+      <Head>
+        <title>{`Search results for ${text}`}</title>
+      </Head>
       {searchResults.data &&
         searchResults.data.results &&
         searchResults.data.results.map((result) => (
