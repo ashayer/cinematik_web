@@ -10,10 +10,10 @@ const MovieCard: React.FC<{ data: MovieResult | MovieResponse }> = ({ data }) =>
      w-48justify-self-center hover:scale-95 cursor-pointer ease-in-ou duration-100 rounded-lg overflow-hidden"
       >
         <Image
-          src={`https://image.tmdb.org/t/p/w200${data.poster_path}`}
+          src={`https://image.tmdb.org/t/p/w500${data.poster_path}`}
           alt="Movie Poster"
-          width={200}
-          height={300}
+          width={250}
+          height={375}
         />
         <h1 className="font-bold">{data.title}</h1>
         <h1>{data.release_date}</h1>
