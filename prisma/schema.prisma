@@ -66,20 +66,24 @@ model LikedMovies {
 }
 
 model Comment {
-  id        String   @unique @default(cuid())
-  userId    String
-  userName  String
-  MovieId   String
-  Likes     Int?     @default(0)
-  Dislikes  Int?     @default(0)
-  Text      String   @db.VarChar(4000)
-  createdAt DateTime @default(now())
+  id           String         @unique @default(cuid())
+  userId       String
+  userName     String
+  MovieId      String
+  Likes        Int?           @default(0)
+  Dislikes     Int?           @default(0)
+  Text         String         @db.VarChar(4000)
+  createdAt    DateTime       @default(now())
+  CommentVotes CommentVotes[]
 }
 
 model CommentVotes {
-  id        String  @unique @default(cuid())
+  id        String   @unique @default(cuid())
   movieId   String
   commentId String
   userId    String
   IsLike    Boolean
+  comment   Comment? @relation(fields: [commentId], references: [id], onDelete: Cascade)
+
+  @@index([commentId])
 }
