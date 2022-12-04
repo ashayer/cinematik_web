@@ -80,7 +80,7 @@ const LandingPage: NextPage = () => {
                       signIn("google", { callbackUrl: "/home" });
                     }}
                   >
-                    <h1>GET STARTED</h1>
+                    <h1>Get Started</h1>
                   </button>
                 )}
               </div>
