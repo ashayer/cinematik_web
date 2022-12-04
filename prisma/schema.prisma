@@ -40,9 +40,9 @@ model Session {
 }
 
 model User {
-  id            String        @id @default(cuid())
+  id            String    @id @default(cuid())
   name          String?
-  email         String?       @unique
+  email         String?   @unique
   emailVerified DateTime?
   image         String?
   accounts      Account[]
@@ -58,9 +58,28 @@ model VerificationToken {
 }
 
 model LikedMovies {
-  id       String @default(cuid())
-  userId   String
-  movieId  String
+  id      String @default(cuid())
+  userId  String
+  movieId String
 
   @@id([userId, movieId])
+}
+
+model Comment {
+  id        String   @unique @default(cuid())
+  userId    String
+  userName  String
+  MovieId   String
+  Likes     Int?     @default(0)
+  Dislikes  Int?     @default(0)
+  Text      String   @db.VarChar(4000)
+  createdAt DateTime @default(now())
+}
+
+model CommentVotes {
+  id        String  @unique @default(cuid())
+  movieId   String
+  commentId String
+  userId    String
+  IsLike    Boolean
 }
