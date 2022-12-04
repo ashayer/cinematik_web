@@ -16,7 +16,7 @@ const Navbar = () => {
   return (
     <>
       {session?.user && (
-        <nav className=" px-2 sm:px-4 py-2.5 bg-gray-900">
+        <nav className=" px-2 sm:px-4 py-2.5 bg-gray-900 text-white">
           <div className="navbar bg-gray-900">
             <div className="flex-1 hidden sm:block">
               <Link href="/home">
