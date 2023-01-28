@@ -1,5 +1,6 @@
 import { createTRPCRouter } from "./trpc";
 import { commentRouter } from "./routers/commentRouter";
+import { movieRouter } from "./routers/movieRouter";
 
 /**
  * This is the primary router for your server.
@@ -8,6 +9,7 @@ import { commentRouter } from "./routers/commentRouter";
  */
 export const appRouter = createTRPCRouter({
   comment: commentRouter,
+  movie: movieRouter,
 });
 
 // export type definition of API
