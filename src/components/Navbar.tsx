@@ -2,11 +2,11 @@
 import Image from "next/image";
 import { useState } from "react";
 import { HiHome, HiOutlineX, HiSearch } from "react-icons/hi";
-import { BsSoundwave } from "react-icons/bs";
 import { useSession, signIn, signOut } from "next-auth/react";
 import type { SubmitHandler } from "react-hook-form";
 import { useForm } from "react-hook-form";
 import { useRouter } from "next/router";
+import { FcFilmReel } from "react-icons/fc";
 
 type FormValues = {
   searchText: string;
@@ -38,7 +38,7 @@ const Navbar = () => {
         <HiHome className="h-6 w-6" />
       </button>
       <span className="no-animation hidden items-center gap-x-1 font-extrabold md:flex">
-        <BsSoundwave /> Intune
+        <FcFilmReel /> Cinematik
       </span>
       <div className="flex items-center justify-between gap-x-2 ">
         <div className="flex items-center justify-between gap-x-2 ">
