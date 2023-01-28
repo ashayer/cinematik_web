@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { MovieDb } from "moviedb-promise";
+import { MovieDb, MovieResult } from "moviedb-promise";
 import { createTRPCRouter, publicProcedure, protectedProcedure } from "../trpc";
 
 export const movieRouter = createTRPCRouter({
@@ -7,6 +7,14 @@ export const movieRouter = createTRPCRouter({
     const movieDB = new MovieDb(process.env.MOVIE_DB_API_KEY as string);
     const popular = await movieDB.moviePopular();
     return popular.results;
+  }),
+  getTrendingMovies: publicProcedure.query(async ({}) => {
+    const movieDB = new MovieDb(process.env.MOVIE_DB_API_KEY as string);
+    const trending = await movieDB.trending({
+      media_type: "movie",
+      time_window: "day",
+    });
+    return trending.results as MovieResult[];
   }),
   getMovieDetails: publicProcedure
     .input(z.object({ movieId: z.string() }))
